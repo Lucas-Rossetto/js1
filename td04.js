@@ -22,29 +22,20 @@ ou encore "Quel est le carré de 11 au fait?"
 function reply(message) {
 
     var heure = new Date();
-    var nombrePrompt = window.prompt("Saisissez un nombre :");
+    var nombre;
+    var nombreCarre = nombre*nombre;
     var annee;
-    var anneePrompt = window.prompt("Saisissez un âge");
-    function _calculateAge(birthday) {
+    function calculateAge(birthday) {
         var ageDifMs = Date.now() - birthday.getTime();
         var ageDate = new Date(ageDifMs);
         return Math.abs(ageDate.getUTCFullYear() - 1970);
-    }
-
-    switch(message) {
-        case "Quelle heure est-il ?" :
+}
+    if(message == "Quelle heure est-il ?"){
         return heure.getHours()+":"+heure.getMinutes();
-        break;
-
-        case "Quel est le carré de " + nombrePrompt + " ? ":
-        var nombrecarre = nombrePrompt * nombrePrompt;
-        return nombrecarre;
-        break;
-
-        case "Quel âge a une personne née en" + anneePrompt + " ? ":
-        annee = anneePrompt;
-        return _calculateAge(annee);
-        break;
+    } else if (message == "Quel est le carré de " +nombre){
+        return nombreCarre;
+    } else if (message == "Quel âge a une personne née en "+annee){
+        return calculateAge(annee);
     }
 
 }
