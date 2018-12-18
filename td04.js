@@ -21,23 +21,29 @@ ou encore "Quel est le carré de 11 au fait?"
 
 function reply(message) {
 
-    var heure = new Date();
-    var nombre;
-    var nombreCarre = nombre*nombre;
-    var annee;
-    function calculateAge(birthday) {
-        var ageDifMs = Date.now() - birthday.getTime();
-        var ageDate = new Date(ageDifMs);
-        return Math.abs(ageDate.getUTCFullYear() - 1970);
-}
-    if(message == "Quelle heure est-il ?"){
-        return heure.getHours()+":"+heure.getMinutes();
-    } else if (message == "Quel est le carré de " +nombre){
-        return nombreCarre;
-    } else if (message == "Quel âge a une personne née en "+annee){
-        return calculateAge(annee);
-    }
+    if(message.indexOf("heure") !== -1) {
+        var heure = new Date();
+        afficheHeure = heure.getHours() + ":" + heure.getMinutes();
+        console.log(afficheHeure);
+        return afficheHeure;
 
+
+    }else if(message.indexOf("carré") !== -1) {
+        var regex = /[0-9]/ig;
+        var calcul = message.match(regex);
+        calcul = calcul.join("");
+        calcul = Math.pow(calcul, 2);
+        return calcul;
+
+
+    }else if(message.indexOf("née") !== -1) {
+        var regex = /[0-9]/ig;
+        var annee = message.match(regex);
+        var test = new Date();
+        annee = annee.join("");
+        calcul = test.getFullYear() - annee;
+        return calcul + " ans";
+    }
 }
 
 /* TD Part */
